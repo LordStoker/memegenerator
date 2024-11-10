@@ -7,7 +7,8 @@ export default function Meme(){
         const memeIndex = Math.floor(Math.random() * memesData.data.memes.length);
         // const meme = memesData[memeIndex];
         // console.log(meme);
-        alert(memesData.data.memes[memeIndex].name);
+        const randomMeme = (memesData.data.memes[memeIndex].url);
+        console.log(randomMeme);
     }
 
 
