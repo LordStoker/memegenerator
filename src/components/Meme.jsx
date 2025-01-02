@@ -5,7 +5,7 @@ export default function Meme(){
     const[meme, setMeme] = useState({
         topText: 'One does not simply',
         bottomText: 'Walks into Mordor',
-        randomImage: "http://i.imgflip.com/1bij.jpg"   
+        imageUrl: "http://i.imgflip.com/1bij.jpg"   
     });
     const [allMemes, setAllMemes] = useState([]);
 
@@ -48,14 +48,14 @@ export default function Meme(){
                         setMeme(prevMeme => {
                             return{
                                 ...prevMeme,
-                                randomImage: allMemes[memeIndex].url
+                                imageUrl: allMemes[memeIndex].url
                             }
                         });
                     }
                 }>Get a new meme image 🖼️</button>
             </div>
             <div className="meme">
-                <img src={meme.randomImage} alt="meme" className='meme--image'></img>
+                <img src={meme.imageUrl} alt="meme" className='meme--image'></img>
                 <span className='top'>{meme.topText}</span>
                 <span className='bottom'>{meme.bottomText}</span>
             </div>
