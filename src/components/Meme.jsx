@@ -7,7 +7,7 @@ export default function Meme(){
         bottomText: 'Walks into Mordor',
         randomImage: "http://i.imgflip.com/1bij.jpg"   
     });
-    const [allMemeImages, setAllMemeImages] = useState([]);
+    const [allMemes, setAllMemes] = useState([]);
 
     // function getMemeImage(){
     //     //const arrayMemes = memesData.data.memes;
@@ -21,14 +21,15 @@ export default function Meme(){
     //     );
     useEffect(() => {
         fetch('https://api.imgflip.com/get_memes')
-        .then(response => response.json())
-        .then(memesImages => setAllMemeImages(memesImages.data.memes));
+        .then(res => res.json())
+        .then(memes => setAllMemes(memes.data.memes));
     },[]);
         // const meme = memesData[memeIndex];
         // console.log(meme);
         // const randomMeme = (memesData.data.memes[memeIndex].url);
         // console.log(randomMeme);
-    return(
+    
+        return(
         <main>
             <div className="form">
                 <label>Top text
@@ -41,7 +42,17 @@ export default function Meme(){
                         bottomText: e.target.value
                     }))}/>
                 </label>
-                <button >Get a new meme image 🖼️</button>
+                <button onClick={ () =>
+                    {
+                        const memeIndex = Math.floor(Math.random() * allMemes.length);
+                        setMeme(prevMeme => {
+                            return{
+                                ...prevMeme,
+                                randomImage: allMemes[memeIndex].url
+                            }
+                        });
+                    }
+                }>Get a new meme image 🖼️</button>
             </div>
             <div className="meme">
                 <img src={meme.randomImage} alt="meme" className='meme--image'></img>
